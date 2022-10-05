@@ -18,4 +18,9 @@ p {
   font-size: 30px;
 }
 
+.link-container{
+  display: flex;
+  flex-direction: column;
+}
+
 
