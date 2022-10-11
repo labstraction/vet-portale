@@ -1,15 +1,24 @@
 
-.header { 
-    height: 200px; 
-    background: wheat ; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300&display=swap');
+ 
+
+.header {
+  height: 200px;
+  background: #0F85BA;
+  color: #FF9C00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.header h1 {
+  font-size: 3rem;
 }
 
 body {
   margin: 0px;
-} 
+}
 
 p {
   display: flex;
@@ -18,9 +27,17 @@ p {
   font-size: 30px;
 }
 
-.link-container{
+.app{
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-
+.link-container {
+  display: flex;
+  flex-direction: column;
+  border: #0F85BA 2px solid;
+  padding: 24px;
+  margin: 24px;
+  border-radius: 24px;
+}

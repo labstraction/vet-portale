@@ -4,10 +4,12 @@ import { generatePaypalLink, getParam } from "./utils";
 async function initApp(){
   setTimeout(async () => {
     const fEntity = new FirebaseEntity()
-    const link = await fEntity.getLinkById(getParam('id'));
+    const id = getParam('id');
+    const link = await fEntity.getLinkById(id);
     const user = await fEntity.getUserById(link.user_id);
-    const paypalLink = generatePaypalLink(link, user);
-    document.getElementById('app').innerHTML = createPaypalContainer(link, user, paypalLink)
+    const paypalLink = generatePaypalLink(id, link, user);
+    document.getElementById('app').innerHTML = link.status === 'completed' ? createLinkContainer(link) 
+                                                                           : createPaypalContainer(link, user, paypalLink)
   }, 3000);
 
 }
@@ -21,7 +23,16 @@ function createPaypalContainer(link, user, paypalLink){
       ${link.comment ? `<span>ed ha aggiunto queste informazioni:</span><span>${link.comment}</span>`: ''}
       <span>il costo della ricetta è: ${link.price} €</span>
       <span>per effettuare il pagamento clicca qui:</span>
-      <a href="${paypalLink}">Paypal</a>
+      <a href="${paypalLink}" target="_blank">Paypal</a>
+    </div>
+  `
+}
+
+
+function createLinkContainer(link){
+  return `
+    <div class="link-container" id="link-container">
+      <a href="${link.hidden_link}"><span class="open-link">Accedi alla ricetta</span></a>
     </div>
   `
 }
